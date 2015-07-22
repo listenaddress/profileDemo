@@ -1,0 +1,255 @@
+.content {
+	margin-top: 50px;
+}
+.undecorated-link:hover {
+	text-decoration: none;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
+}
+.ng-valid.ng-dirty {
+	border-color: #78FA89;
+}
+a:link, a:active, a:visited, a:hover {
+	color: #333;
+}
+textarea {
+	resize: none;
+}
+select {
+	display: block;
+	margin-top: 5px;
+}
+.mainUserInfo {
+	padding-bottom: 60px;
+}
+.userPic {
+	height: 80px;
+	width: 80px;
+	border-radius: 5px;
+}
+.userFullName {
+	position: absolute;
+	margin-left: 120px;
+	margin-top: -27px;
+	min-width: 50px;
+	max-width: 60%;
+}
+.bio {
+	margin-left: 120px;
+	margin-top: 30px;
+	width: 50%;
+}
+.charactersLeft {
+	position: relative;
+	left: 127px;
+	font-weight: 500;
+}
+.descriptionCharactersLeft {
+	float: right;
+	font-weight: 500;
+	padding-right: 8px;
+}
+.socials {
+	margin-left: 120px;
+	margin-top: 30px;
+}
+.socials img {
+	margin-right: 10px;
+	margin-bottom: 5px;
+}
+.edit {
+	float: right;
+}
+.workExperience {
+	padding-top: 60px;
+}
+.workExperience div {
+	margin-top: 10px;
+}
+.sectionTitle {
+	font-size: 1.5em;
+	font-weight: 800;
+	margin-bottom: 20px;
+}
+.job {
+	border: 1px solid gray;
+	border-radius: 3px;
+	padding: 10px;
+	position: relative;
+}
+.company {
+	font-weight: 600;
+}
+.role {
+	width: 300px;
+	max-width: 100%;
+	margin-bottom: 10px;
+	font-style: italic;
+}
+.description {
+	width: 100%;
+}
+.userDetails {
+	margin-top: 60px;
+}
+.yourInfo {
+	margin-bottom: 20px;
+}
+.detail {
+	margin-top: 15px;
+	margin-bottom: 10px;
+	font-weight: 600;
+}
+.changePhoto {
+	position: absolute;
+	width: 80px;
+	background-color: rgb(167, 205, 236);
+	border-radius: 4px;
+	border: none;
+	padding: 6px;
+	margin-top: 5px;
+}
+.changeCover {
+	float: right;
+	background-color: rgb(167, 205, 236);
+	border-radius: 4px;
+	border: none;
+	padding: 6px 12px;
+}
+.coverPhoto {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: -2;
+	background-color: red;
+	width: 100vw;
+	opacity: 0.5;
+}
+.skirt {
+	background-color: white;
+	width: 100%;
+	height: auto;
+	z-index: -1;
+	position: absolute;
+	left: 0;
+}
+.editing {
+	border: 1px solid;
+	padding: 6px;
+	border-radius: 3px;
+}
+.editingName {
+	background-color: white;
+}
+.editingJob {
+	margin-top: 0px !important;
+}
+.editingCompany {
+	margin-top: 0px !important;
+	margin-right: 180px !important;
+	width: 150px;
+}
+.editingUrl {
+	min-width: 50%;
+}
+.editingDash {
+	position: relative;
+	top: 6px;
+}
+.jobEnd {
+	margin-left: 10px;
+	min-width: 20px;
+}
+.jobStart {
+	margin-right: 10px;
+	min-width: 20px;
+}
+.duration {
+	float: right;
+	margin-top: 0px !important;
+	max-width: 83px;
+}
+.durationDash {
+	position: relative;
+	top: 3px;
+}
+.job input {
+	margin-bottom: 10px;
+	display: block;
+}
+.signInButton {
+	margin-bottom: 20px;
+}
+.jobButton {
+	margin-top: 20px;
+}
+.newJob{
+	margin-top: 10px;
+	padding-bottom: 25px;
+}
+.saveButton {
+	background-color: rgb(112, 205, 116);
+}
+.saveNewButton {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.cancelButton {
+	margin-left: 10px;
+}
+.editProfileButton {
+	position: relative;
+	top: -7px;
+}
+.secondCancelButton {
+	margin-left: 7px;
+}
+.bottomButton {
+	margin-top: 40px;
+	margin-bottom: 80px;
+	margin-right: 7px;
+}
+.deleteButton {
+	background-color: rgb(240, 107, 107);
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+.addThingButton {
+	margin-bottom: 20px;
+}
+.creditInfo {
+	margin-bottom: 5px;
+	margin-top: 8px;
+}
+.addressInput {
+	width: 210px;
+	display: block;
+	margin-bottom: 10px;
+}
+.creditInput {
+	width: 60px;
+	display: block;
+}
+.phoneInput {
+	position: relative;
+	display: block;
+}
+.infoSet{
+	margin-bottom: 5px;
+}
+
+@media (max-width: 450px) {
+	.editingCompany {
+		width: 130px;
+	}
+	.jobStart {
+		margin-right: 5px;
+	}
+	.jobEnd {
+		margin-left: 5px;
+	}
+}

@@ -1,0 +1,67 @@
+<section data-ng-controller="HomeController">
+	<div ng-show="editing" ng-include="'/modules/users/views/authentication/editProfile.client.view.html'"></div>
+	<div ng-hide="editing">
+		<div ng-show="!authentication.user">
+			<button class="btn signInButton" ng-click="signingUp = true; signingIn = false">Sign Up</button>
+			<button class="btn signInButton" ng-click="signingIn = true; signingUp = false">Sign In</button>
+			<div ng-show="signingUp">
+				<div ng-include="'/modules/users/views/authentication/signup.client.view.html'"></div>
+			</div>
+			<div ng-show="signingIn">
+				<div ng-include="'/modules/users/views/authentication/signin.client.view.html'"></div>
+			</div>
+		</div>
+		<div ng-show="authentication.user">
+			<div class="mainUserInfo">
+			<img class="coverPhoto" ng-src="{{authentication.user.coverPhoto}}"/>
+				<div class="userPic">
+					<img class="userPic" ng-src="{{authentication.user.avatar}}" />
+				</div>
+				<h2 class="userFullName">{{authentication.user.name}}</h2>
+				<div class="bio">{{authentication.user.bio}}</div>
+				<div class="socials">
+					<a ng-href="{{authentication.user.facebook}}"><img ng-src="/modules/core/img/facebook.png" /></a>
+					<a ng-href="{{authentication.user.twitter}}"><img ng-src="/modules/core/img/twitter.png" /></a>
+					<a ng-href="{{authentication.user.linkedIn}}"><img ng-src="/modules/core/img/linkedIn.png" /></a>
+					<button class="edit btn" ng-click="startEditing()">Edit</button>
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="skirt">
+					<div class="container">
+						<div class="workExperience">
+							<div class="sectionTitle">Work Experience</div>
+							<div ng-repeat="job in authentication.user.jobs" class="job">
+								<div ng-bind="job.end" class="duration jobEnd"></div>
+								<div class="pull-right duration" ng-if="job.end && job.start"> — </div>
+								<div ng-bind="job.start" class="duration jobStart"></div>
+								<span class="company" ng-bind="job.company"></span>
+								<div class="role" ng-bind="job.role"></div>
+								<div class="description" ng-bind="job.description"></div>
+							</div>
+						</div>
+						<div class="userDetails">
+							<div class="sectionTitle">Your information</div>
+							<div class="detail">Addresses</div>
+							<div class="infoSet" ng-repeat="address in authentication.user.addresses">
+								<div ng-bind="address.street"></div>
+								<span>{{address.city}}, {{address.state}} {{address.zip}}</span>
+							</div>
+							<div class="detail">Credit Cards</div>
+							<div class="infoSet" ng-repeat="card in authentication.user.cards">
+								<span>XXXX XXXX XXXX </span>
+								<span ng-bind="card.lastFour"></span>
+							</div>
+							<div class="detail">Phone Numbers</div>
+							<div class="infoSet" ng-repeat="phone in authentication.user.phones">
+								<div>{{ phone.displayNumber }}</div>
+							</div>
+						</div>
+						<button class="btn bottomButton" ng-click="startEditing()">Edit</button>
+						<a href="auth/signout"><button class="btn bottomButton">Sign Out</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

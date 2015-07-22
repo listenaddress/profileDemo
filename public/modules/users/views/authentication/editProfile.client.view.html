@@ -1,0 +1,152 @@
+<div ng-hide="!editing">
+	<div class="mainUserInfo" ng-style="coverPhoto">
+		<img class="coverPhoto" ng-src="{{authentication.user.coverPhoto}}"/>
+		<button class="changeCover" ng-click="changeCover()">Change Cover Photo</button>
+		<div class="userPic">
+			<img class="userPic" ng-src="{{authentication.user.avatar}}" />
+		</div>
+		<button class="changePhoto" ng-click="changePhoto()">Change Avatar</button>
+		<h2 contenteditable class="userFullName editing editingName" ng-model="authentication.user.name"></h2>
+		<textarea class="bio editing editingName" ng-model="authentication.user.bio" maxlength="500"></textarea>
+		<div class="charactersLeft">{{500 - authentication.user.bio.length}} characters left</div>
+		<div class="socials">
+			<form name="facebookForm">
+				<img src="/modules/core/img/facebook.png" />
+				<input type="url" class="editing editingUrl" name="input" ng-model="authentication.user.facebook" placeholder="http://"/>
+				<span class="error" ng-show="facebookForm.input.$error.url" ng-if="!authentication.user.facebook">Not a valid url.</span>
+			</form>
+			<form name="twitterForm">
+				<img src="/modules/core/img/twitter.png" />
+				<input type="url" class="editing editingUrl" name="input" ng-model="authentication.user.twitter" placeholder="http://"/>
+				<span class="error" ng-show="twitterForm.input.$error.url" ng-if="!authentication.user.twitter">Not a valid url.</span>
+			</form>
+			<form name="linkedInForm">
+				<img src="/modules/core/img/linkedIn.png" />
+				<input type="url" class="editing editingUrl" name="input" ng-model="authentication.user.linkedIn" placeholder="http://"/>
+				<span class="error" ng-show="linkedInForm.input.$error.url" ng-if="!authentication.user.linkedIn">Not a valid url.</span>
+			</form>
+			<button class="edit btn jobButton cancelButton editProfileButton" ng-click="cancelEdit()">Cancel</button>
+			<button class="edit btn jobButton editProfileButton saveButton" ng-click="updateUserProfile()">Save</button>
+		</div>
+	</div>
+	<div class="skirt">
+		<div class="container">
+			<div class="workExperience">
+				<div class="sectionTitle">Work Experience</div>
+				<div ng-repeat="job in authentication.user.jobs" class="job">
+					<div contenteditable ng-model="job.end" class="editingJob duration editing jobEnd">present</div>
+					<div class="editingJob pull-right editingDash"> — </div>
+					<div contenteditable ng-model="job.start" class="editingJob duration editing jobStart">Jan 2015</div>
+					<div contenteditable class="editingJob company editingCompany editing" ng-model="job.company"></div>
+					<div contenteditable class="role editing" ng-model="job.role"></div>
+					<textarea ng-model="job.description" class="description editing" placeholder="I made the Internet feel nice. I also kicked it hard with gary, nigel, and all of the homies." maxlength="300"></textarea>
+					<span class="descriptionCharactersLeft">{{300 - job.description.length}} characters left</span>
+					<button class="btn jobButton deleteButton" ng-click="removeJob()">Delete Job</button>
+				</div>
+			</div>
+			<div class="job newJob" ng-if="addingJob">
+				<input ng-model="job.end" class="duration editing jobEnd" placeholder="Current" />
+				<div class="duration editingDash"> — </div>
+				<input ng-model="job.start" class="duration editing jobStart" placeholder="July 2009" />
+				<input ng-model="job.company" class="company editing  editingCompany" placeholder="Demo Company" />
+				<input ng-model="job.role" class="role editing" placeholder="UX Designer"/>
+				<textarea ng-model="job.description" class="description editing" placeholder="I made the Internet feel nice. I also kicked it hard with gary, nigel, and all of the homies." maxlength="300"></textarea>
+				<span class="descriptionCharactersLeft">{{300 - job.description.length}} characters left</span>
+
+			</div>
+			<button class="btn jobButton" ng-click="addJob()" ng-hide="addingJob">Add a Job</button>
+			<button class="btn saveButton saveNewButton" ng-click="saveJob(job)" ng-if="addingJob">Save Job</button>
+			<button class="btn" ng-click="notAddingJob()" ng-if="addingJob">Cancel</button>
+			<div class="userDetails">
+				<div class="sectionTitle">Your information</div>
+				<div class="detail">Addresses</div>
+				<form autocomplete="on" ng-repeat="address in authentication.user.addresses">
+					<div class="creditInfo"><i>Address {{$index+1}}</i></div>
+					<input type="text" name="street" class="addressInput editing" placeholder="866 E. 10th" ng-model="address.street"/>
+					<div class="creditInfo"><i>City</i></div>
+					<input type="text" name="city" class="addressInput editing" placeholder="San Francisco" ng-model="address.city"/>
+					<div class="creditInfo"><i>State</i></div>
+					<input type="text" name="state" class="addressInput editing" placeholder="CA" ng-model="address.state"/>
+					<div class="creditInfo"><i>Zip</i></div>
+					<input type="text" name="zip" class="addressInput editing" placeholder="92829" ng-model="address.zip"/>
+					<button class="btn deleteButton" ng-click="removeAddress()">Delete Address</button>
+				</form>
+				<div ng-if="addingAddress">
+					<form autocomplete="on">
+						<div class="creditInfo"><i>Address {{ authentication.user.addresses.length + 1 }}</i></div>
+						<input type="text" name="street" class="addressInput editing" placeholder="866 E. 10th" ng-model="address.street"/>
+						<div class="creditInfo"><i>City</i></div>
+						<input type="text" name="city" class="addressInput editing" placeholder="San Francisco" ng-model="address.city"/>
+						<div class="creditInfo"><i>State</i></div>
+						<input type="text" name="state" class="addressInput editing" placeholder="CA" ng-model="address.state"/>
+						<div class="creditInfo"><i>Zip</i></div>
+						<input type="text" name="zip" class="addressInput editing" placeholder="92829" ng-model="address.zip"/>
+					</form>
+					<br>
+					<button class="btn saveButton saveNewButton" ng-click="saveAddress(address)">Save Address</button>
+					<button class="btn" ng-click="cancelAddressAdd()">Cancel</button>
+				</div>
+				<button class="btn addThingButton" ng-click="addAnAddress()" ng-hide="addingAddress">Add an address</button>
+				<br>
+				<div class="detail">Credit Cards</div>
+				<div ng-repeat="card in authentication.user.cards">
+					<div class="creditInfo"><i>Card {{ $index + 1 }}</i></div>
+					<input type="text" class="editing" ng-model="card.number" payments-format="card"/>
+					<span>{{ card.number | validate }}</span>
+					<div class="creditInfo"><i>Experation Date</i></div>
+					<input type="text" class="creditInput editing" ng-model="card.experation" placeholder="09/10" payments-validate="expiry" payments-format="expiry" maxlength="7"/>
+					<div class="creditInfo"><i>Security Number</i></div>
+					<input type="text" class="creditInput editing" ng-model="card.security" placeholder="830" payments-validate="cvc" maxlength="4" />
+					<div class="creditInfo"><i>Billing Zip</i></div>
+					<input type="text" class="creditInput editing" ng-model="card.billing" placeholder="58903" ng-minlength="5" maxlength="5" />
+					<button class="btn deleteButton" ng-click="removeCard()">Delete Card</button>
+					<br>
+				</div>
+				<button class="btn addThingButton" ng-click="addACard()" ng-hide="addingCard">Add a credit card</button>
+				<div ng-if="addingCard">
+					<div class="creditInfo"><i>Card {{ authentication.user.cards.length + 1 }}</i></div>
+					<input type="text" class="editing" ng-model="card.number" payments-format="card" placeholder="5123 2382 2930 2030"/>
+					<span>{{ card.number | validate }}</span>
+					<div class="creditInfo"><i>Experation Date</i></div>
+					<input type="text" class="creditInput editing" ng-model="card.experation" placeholder="09/10" payments-validate="expiry" payments-format="expiry" maxlength="7"/>
+					<div class="creditInfo"><i>Security Number</i></div>
+					<input type="text" class="creditInput editing" ng-model="card.security" placeholder="830" payments-validate="cvc" maxlength="4" />
+					<div class="creditInfo"><i>Billing Zip</i></div>
+					<input type="text" class="creditInput editing" ng-model="card.billing" placeholder="58903" ng-minlength="5" maxlength="5" />
+					<button class="btn saveButton saveNewButton" ng-click="saveCard(card)">Save Card</button>
+					<button class="btn" ng-click="cancelCardAdd()">Cancel</button>
+				</div>
+				<br>
+				<div class="detail">Phone Numbers</div>
+				<form name="phoneForm" ng-repeat="phone in authentication.user.phones">
+					<div class="creditInfo"><i>Phone {{ $index + 1 }}</i></div>
+					<input type="text" class="editing" name="number" ng-model="phone.number" ui-mask="(999) 999-9999"/>
+					<div ng-if="phoneForm.number.$dirty && !phone.number">Not a valid U.S. number</div>
+					<div class="creditInfo"><i>Type</i></div>
+					<select ng-model="phone.type" convert-to-number>
+						<option value="0">Mobile</option>
+						<option value="1">Home</option>
+						<option value="2">Work</option>
+					</select>
+					<button class="btn deleteButton phoneInput" ng-click="removePhone()">Delete Phone</button>
+				</form>
+				<form name="phoneForm" ng-if="addingPhone">
+					<div class="creditInfo"><i>Phone {{ authentication.user.phones.length + 1 }}</i></div>
+					<input name="number" type="text" class="phoneInput editing" ng-model="phone.number" ui-mask="(999) 999-9999" required/>
+					<div ng-if="phoneForm.number.$dirty && !phone.number">Not a valid U.S. number</div>
+					<div class="creditInfo"><i>Type</i></div>
+					<select ng-model="phone.type" convert-to-number>
+						<option value="0">Mobile</option>
+						<option value="1">Home</option>
+						<option value="2">Work</option>
+					</select>
+					<button class="btn saveButton saveNewButton" ng-click="savePhone(phone)">Save Phone</button>
+					<button class="btn" ng-click="cancelPhoneAdd()">Cancel</button>
+				</form>
+				<button class="btn addThingButton" ng-click="addAPhone()" ng-hide="addingPhone">Add a phone number</button>
+			</div>
+			<button class="btn bottomButton saveButton" ng-click="updateUserProfile()">Save</button>
+			<button class="btn bottomButton" ng-click="cancelEdit()">Cancel</button>
+		</div>
+	</div>
+</div>
