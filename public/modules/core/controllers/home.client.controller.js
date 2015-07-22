@@ -13,7 +13,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 					$scope.authentication.user.cards[i].lastFour  = Authentication.user.cards[i].number.substr($scope.user.cards[i].number.length - 4);
 				}
 			}
-			console.log(Authentication.user.phones);
 			if (Authentication.user.phones) {
 				for (var p = 0; p < Authentication.user.phones.length; p++) {
 					var firstThree = Authentication.user.phones[p].number.substr(0, 3);
@@ -114,6 +113,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
 		$scope.saveAddress = function(address) {
 			var newAddress = address;
+			console.log($scope.user.addresses);
 			if (!$scope.user.addresses) {
 				$scope.user.addresses = [];
 			}
