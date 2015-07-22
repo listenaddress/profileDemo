@@ -32,6 +32,7 @@
 	<div class="skirt">
 		<div class="container">
 			<div class="workExperience">
+				<!-- "Work Experience" section -->
 				<div class="sectionTitle">Work Experience</div>
 				<div ng-repeat="job in authentication.user.jobs" class="job">
 					<div contenteditable ng-model="job.end" class="editingJob duration editing jobEnd">present</div>
@@ -57,6 +58,7 @@
 			<button class="btn jobButton" ng-click="addJob()" ng-hide="addingJob">Add a Job</button>
 			<button class="btn saveButton saveNewButton" ng-click="saveJob(job)" ng-if="addingJob">Save Job</button>
 			<button class="btn" ng-click="notAddingJob()" ng-if="addingJob">Cancel</button>
+			<!-- "Your Information" section -->
 			<div class="userDetails">
 				<div class="sectionTitle">Your information</div>
 				<div class="detail">Addresses</div>

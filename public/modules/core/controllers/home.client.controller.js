@@ -7,6 +7,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 		$scope.user = Authentication.user;
 		$scope.addingJob = false;
 
+		// Make prettier strings to display for credit cards and and phone numbers
 		var createPhoneAndCardDisplays = function() {
 			if (Authentication.user.cards) {
 				for (var i = 0; i < $scope.authentication.user.cards.length; i++) {
@@ -48,6 +49,11 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 			
 		};
 
+		// State changes
+		$scope.beginSignIn = function() {
+			$scope.signingIn = true;
+		};
+
 		$scope.cancelEdit = function() {
 			$scope.editing = false;
 			$scope.user = $scope.oldUserObj;
@@ -60,6 +66,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 			$scope.editing = true;
 		};
 
+		// Change avatar and cover functions
 		$scope.changePhoto = function () {
 			var photo = prompt('Paste your photo url here. Tip: square photos fit best!');
 			if ((photo !== null) && (photo !== '')) {
@@ -76,6 +83,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 			}
 		};
 
+		// Job functions
 		$scope.addJob = function () {
 			$scope.addingJob = true;
 			$scope.job = {};
@@ -92,7 +100,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 			var newJob = job;
 			$scope.user.jobs.push(job);
 			$scope.updateUserProfile();
-			$scope.job = {};
 		};
 
 		$scope.removeJob = function() {
@@ -103,6 +110,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 			$scope.updateUserProfile();
 		};
 
+		// Address functions
 		$scope.addAnAddress = function() {
 			$scope.addingAddress = true;
 		};
@@ -113,14 +121,12 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
 		$scope.saveAddress = function(address) {
 			var newAddress = address;
-			console.log($scope.user.addresses);
 			if (!$scope.user.addresses) {
 				$scope.user.addresses = [];
 			}
 			$scope.user.addresses.push(address);
 			$scope.updateUserProfile();
 		};
-
 
 		$scope.removeAddress = function() {
 			var index = $scope.user.addresses.indexOf(this.address);
@@ -130,6 +136,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 			$scope.updateUserProfile();
 		};
 
+		// Card functions
 		$scope.addACard = function() {
 			$scope.addingCard = true;
 		};
@@ -147,7 +154,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 			$scope.updateUserProfile();
 		};
 
-
 		$scope.removeCard = function() {
 			var index = $scope.user.cards.indexOf(this.card);
 			if (index > -1) {
@@ -156,6 +162,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 			$scope.updateUserProfile();
 		};
 
+		// Phone functions
 		$scope.addAPhone = function() {
 			$scope.addingPhone = true;
 		};
@@ -180,8 +187,5 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 			$scope.updateUserProfile();
 		};
 
-		$scope.beginSignIn = function() {
-			$scope.signingIn = true;
-		};
 	}
 ]);
