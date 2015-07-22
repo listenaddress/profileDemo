@@ -137,6 +137,9 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
 		$scope.saveCard = function(card) {
 			var newCard = card;
+			if (!$scope.user.cards) {
+				$scope.user.cards = [];
+			}
 			$scope.user.cards.push(card);
 			$scope.updateUserProfile();
 		};
