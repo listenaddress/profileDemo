@@ -114,6 +114,9 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
 		$scope.saveAddress = function(address) {
 			var newAddress = address;
+			if (!$scope.user.addresses) {
+				$scope.user.addresses = [];
+			}
 			$scope.user.addresses.push(address);
 			$scope.updateUserProfile();
 		};
@@ -162,9 +165,10 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 		};
 
 		$scope.savePhone = function(phone) {
-			console.log(phone);
+			if (!$scope.user.phones) {
+				$scope.user.phones = [];
+			}
 			$scope.user.phones.push(phone);
-			console.log($scope.user);
 			$scope.updateUserProfile();
 		};
 
