@@ -9,6 +9,8 @@
 		<h2 contenteditable class="userFullName editing editingName" ng-model="authentication.user.name"></h2>
 		<textarea class="bio editing editingName" ng-model="authentication.user.bio" maxlength="500"></textarea>
 		<div class="charactersLeft">{{500 - authentication.user.bio.length}} characters left</div>
+		<span class="age">Age - </span>
+		<input class="editing ageInput" type="text" ng-model="authentication.user.age" placeholder="Age"/>
 		<div class="socials">
 			<form name="facebookForm">
 				<img src="/modules/core/img/facebook.png" />
@@ -25,7 +27,7 @@
 				<input type="url" class="editing editingUrl" name="input" ng-model="authentication.user.linkedIn" placeholder="http://"/>
 				<span class="error" ng-show="linkedInForm.input.$error.url" ng-if="!authentication.user.linkedIn">Not a valid url.</span>
 			</form>
-			<button class="edit btn jobButton cancelButton editProfileButton" ng-click="cancelEdit()">Cancel</button>
+			<button class="edit btn jobButton cancelButton editProfileButton silverButton" ng-click="cancelEdit()">Cancel</button>
 			<button class="edit btn jobButton editProfileButton saveButton" ng-click="updateUserProfile()">Save</button>
 		</div>
 	</div>
@@ -35,9 +37,9 @@
 				<!-- "Work Experience" section -->
 				<div class="sectionTitle">Work Experience</div>
 				<div ng-repeat="job in authentication.user.jobs" class="job">
-					<div contenteditable ng-model="job.end" class="editingJob duration editing jobEnd">present</div>
-					<div class="editingJob pull-right editingDash"> — </div>
-					<div contenteditable ng-model="job.start" class="editingJob duration editing jobStart">Jan 2015</div>
+					<input class="duration editing" type="date" ng-model="job.end" />
+					<span class="durationDash"> — </span>
+					<input class="duration editing" type="date" ng-model="job.start" />
 					<div contenteditable class="editingJob company editingCompany editing" ng-model="job.company"></div>
 					<div contenteditable class="role editing" ng-model="job.role"></div>
 					<textarea ng-model="job.description" class="description editing" placeholder="I made the Internet feel nice. I also kicked it hard with gary, nigel, and all of the homies." maxlength="300"></textarea>
@@ -46,18 +48,33 @@
 				</div>
 			</div>
 			<div class="job newJob" ng-if="addingJob">
-				<input ng-model="job.end" class="duration editing jobEnd" placeholder="Current" />
+				<input class="duration editing" type="date" ng-model="job.end">
+				<span class="durationDash"> — </span>
+				<input class="duration editing" type="date" ng-model="job.start">
+
+
+<!-- 				Start month <input type="text" placeholder="9"/>
+				Start year <input type="text" placeholder="2014">
+				End month <input type="text" placeholder="10"/>
+				End date <input type="text" placeholder="2015"> -->
+<!-- 				<div class="duration editing jobEnd" ng-click="enteringJobEnd = true" datepicker-options="dateOptions" date-disabled="disabled(date, mode)">{{job.end}}</div>
+				<div class="datePickerWrapper" ng-if="enteringJobEnd">
+					<datepicker ng-model="job.end"></datepicker>
+				</div> -->
+
+
+<!-- 				<input ng-model="job.end" class="duration editing jobEnd" placeholder="Current" />
 				<div class="duration editingDash"> — </div>
 				<input ng-model="job.start" class="duration editing jobStart" placeholder="July 2009" />
-				<input ng-model="job.company" class="company editing  editingCompany" placeholder="Demo Company" />
+				<input ng-model="job.company" class="company editing  editingCompany" placeholder="Demo Company" /> -->
 				<input ng-model="job.role" class="role editing" placeholder="UX Designer"/>
 				<textarea ng-model="job.description" class="description editing" placeholder="I made the Internet feel nice. I also kicked it hard with gary, nigel, and all of the homies." maxlength="300"></textarea>
 				<span class="descriptionCharactersLeft">{{300 - job.description.length}} characters left</span>
 
 			</div>
-			<button class="btn jobButton" ng-click="addJob()" ng-hide="addingJob">Add a Job</button>
+			<button class="btn jobButton silverButton" ng-click="addJob()" ng-hide="addingJob">Add a Job</button>
 			<button class="btn saveButton saveNewButton" ng-click="saveJob(job)" ng-if="addingJob">Save Job</button>
-			<button class="btn" ng-click="notAddingJob()" ng-if="addingJob">Cancel</button>
+			<button class="btn silverButton" ng-click="notAddingJob()" ng-if="addingJob">Cancel</button>
 			<!-- "Your Information" section -->
 			<div class="userDetails">
 				<div class="sectionTitle">Your information</div>
@@ -86,9 +103,9 @@
 					</form>
 					<br>
 					<button class="btn saveButton saveNewButton" ng-click="saveAddress(address)">Save Address</button>
-					<button class="btn" ng-click="cancelAddressAdd()">Cancel</button>
+					<button class="btn silverButton" ng-click="cancelAddressAdd()">Cancel</button>
 				</div>
-				<button class="btn addThingButton" ng-click="addAnAddress()" ng-hide="addingAddress">Add an address</button>
+				<button class="btn addThingButton silverButton" ng-click="addAnAddress()" ng-hide="addingAddress">Add an address</button>
 				<br>
 				<div class="detail">Credit Cards</div>
 				<div ng-repeat="card in authentication.user.cards">
@@ -104,7 +121,7 @@
 					<button class="btn deleteButton" ng-click="removeCard()">Delete Card</button>
 					<br>
 				</div>
-				<button class="btn addThingButton" ng-click="addACard()" ng-hide="addingCard">Add a credit card</button>
+				<button class="btn addThingButton silverButton" ng-click="addACard()" ng-hide="addingCard">Add a credit card</button>
 				<div ng-if="addingCard">
 					<div class="creditInfo"><i>Card {{ authentication.user.cards.length + 1 }}</i></div>
 					<input type="text" class="editing" ng-model="card.number" payments-format="card" placeholder="5123 2382 2930 2030"/>
@@ -116,7 +133,7 @@
 					<div class="creditInfo"><i>Billing Zip</i></div>
 					<input type="text" class="creditInput editing" ng-model="card.billing" placeholder="58903" ng-minlength="5" maxlength="5" />
 					<button class="btn saveButton saveNewButton" ng-click="saveCard(card)">Save Card</button>
-					<button class="btn" ng-click="cancelCardAdd()">Cancel</button>
+					<button class="btn silverButton" ng-click="cancelCardAdd()">Cancel</button>
 				</div>
 				<br>
 				<div class="detail">Phone Numbers</div>
@@ -143,12 +160,12 @@
 						<option value="2">Work</option>
 					</select>
 					<button class="btn saveButton saveNewButton" ng-click="savePhone(phone)">Save Phone</button>
-					<button class="btn" ng-click="cancelPhoneAdd()">Cancel</button>
+					<button class="btn silverButton" ng-click="cancelPhoneAdd()">Cancel</button>
 				</form>
-				<button class="btn addThingButton" ng-click="addAPhone()" ng-hide="addingPhone">Add a phone number</button>
+				<button class="btn addThingButton silverButton" ng-click="addAPhone()" ng-hide="addingPhone">Add a phone number</button>
 			</div>
 			<button class="btn bottomButton saveButton" ng-click="updateUserProfile()">Save</button>
-			<button class="btn bottomButton" ng-click="cancelEdit()">Cancel</button>
+			<button class="btn bottomButton silverButton" ng-click="cancelEdit()">Cancel</button>
 		</div>
 	</div>
 </div>

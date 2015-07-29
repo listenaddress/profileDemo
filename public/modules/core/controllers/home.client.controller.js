@@ -98,6 +98,9 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
 		$scope.saveJob = function(job) {
 			var newJob = job;
+			if (!$scope.user.jobs) {
+				$scope.user.jobs = [];
+			}
 			$scope.user.jobs.push(job);
 			$scope.updateUserProfile();
 		};

@@ -63,6 +63,7 @@ select {
 }
 .edit {
 	float: right;
+	margin-left: 10px;
 }
 .workExperience {
 	padding-top: 60px;
@@ -171,11 +172,12 @@ select {
 .duration {
 	float: right;
 	margin-top: 0px !important;
-	max-width: 83px;
 }
 .durationDash {
-	position: relative;
-	top: 3px;
+	float: right;
+	margin-top: 7px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 .job input {
 	margin-bottom: 10px;
@@ -218,6 +220,9 @@ select {
 	margin-top: 10px;
 	margin-bottom: 15px;
 }
+.silverButton {
+	background-color: rgb(194, 194, 194);
+}
 .addThingButton {
 	margin-bottom: 20px;
 }
@@ -240,6 +245,14 @@ select {
 }
 .infoSet{
 	margin-bottom: 5px;
+}
+.age {
+	margin-left: 120px;
+	width: 50px;
+	font-weight: 700;
+}
+.ageInput {
+	width: 50px;
 }
 
 @media (max-width: 450px) {
